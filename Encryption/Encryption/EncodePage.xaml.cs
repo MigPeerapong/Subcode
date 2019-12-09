@@ -438,7 +438,35 @@ namespace Encryption
 			byte[] sourceBytes = Encoding.UTF8.GetBytes(text);
 			byte[] hashBytes = sha256Hash.ComputeHash(sourceBytes);
 			string hash = BitConverter.ToString(hashBytes).Replace("-", String.Empty);
-			return hash.Length + "/" + hash;
+			//return hash.Length + "/" + hash;
+			return Decode_Sha256Hash(hash);
+		}
+
+		private string Decode_Sha256Hash(string text)
+		{
+			string change,recheck;
+			for (int i = 1; i <= 255; i++)
+			{
+				change = Convert.ToString(Convert.ToChar(i));
+				SHA256 sha256Hash = SHA256.Create();
+				byte[] sourceBytes = Encoding.UTF8.GetBytes(change);
+				byte[] hashBytes = sha256Hash.ComputeHash(sourceBytes);
+				string hash = BitConverter.ToString(hashBytes).Replace("-", String.Empty);
+
+				//Match code
+				if (text == hash)
+				{
+					return change;
+				}
+				else if(i == 255)
+				{
+					i = 0;
+				}
+			}
+			return "0";
+			
+
+			//return hash.Length + "/" + hash;
 		}
 
 		/// <summary>
