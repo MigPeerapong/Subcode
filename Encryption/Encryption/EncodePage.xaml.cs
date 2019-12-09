@@ -606,7 +606,7 @@ namespace Encryption
 		private void click_Clicked(object sender, EventArgs e)
 		{
 			//bool a = Policy_Pass("kpee1234321111", "kpeera");
-			string v = "kpeerapong";
+			string v = "kpeerapong 1716";
 		}
 		//-------------------------------------------------------------------------------//
 
